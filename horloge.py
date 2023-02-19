@@ -15,15 +15,23 @@ def horloge(h,m,s):
             if h == 24:
                 h = '00'
                 return h,m,s
+
             elif 1 <= h < 9:
                 zero += str(h)
                 h = zero
                 return h,m,s
             else:
                 return h,m,s
+
         elif 1 <= m < 9:
             if h == 0:
                 h = '00'
+
+            elif 1 <= h < 9:
+                zero += str(h)
+                h = zero
+                zero = '0'
+
             zero += str(m)
             m = zero
             return h,m,s
@@ -37,13 +45,14 @@ def horloge(h,m,s):
             elif 1 <= m < 9:
                 zero += str(m)
                 m = zero
+                zero = '0'
 
             if h == 0:
                 h = '00'
             elif 1 <= h < 9:
                 zero += str(h)
                 h = zero
-            zero = '0'
+                zero = '0'
 
             zero += str(s)
             s = zero
@@ -57,13 +66,14 @@ def horloge(h,m,s):
             elif 1 <= m < 9:
                 zero += str(m)
                 m = zero
+                zero = '0'
 
             if h == 0:
                 h = '00'
             elif 1 <= h < 9:
                 zero += str(h)
                 h = zero
-            zero = '0'
+                zero = '0'
 
             zero += str(s)
             s = zero
@@ -75,6 +85,7 @@ def horloge(h,m,s):
             elif 1 <= m < 9:
                 zero += str(m)
                 m = zero
+                zero = '0'
 
             if h == 0:
                 h = '00'
@@ -89,7 +100,7 @@ def regler_heure(h,m,s):
         result = str(h) + ':' + str(m) + ':' + str(s)
         print(result)
         x = 0
-        while 1:  
+        while 1:
             try:
                 x += 1
                 h,m,s = horloge(h,m,s)
@@ -128,8 +139,7 @@ def regler_alarme(h,m,s):
                 x += 1
                 h,m,s = horloge(h,m,s)
                 result = str(h) + ':' + str(m) + ':' + str(s)
-                print(result)
-                if h == int(ha) and m == int(ma) and s == int(sa):
+                if int(h) == int(ha) and int(m) == int(ma) and int(s) == int(sa):
                     print(result, "Alarme")
                 else:
                     print(result)
@@ -163,7 +173,7 @@ def regler_alarme_heure(h,m,s,ha,ma,sa):
                 x += 1
                 h,m,s = horloge(h,m,s)
                 result = str(h) + ':' + str(m) + ':' + str(s)
-                if h == int(ha) and m == int(ma) and s == int(sa):
+                if int(h) == int(ha) and int(m) == int(ma) and int(s) == int(sa):
                     print(result, "Alarme")
                 else:
                     print(result)
@@ -224,7 +234,7 @@ def main(choix):
             if 2 <= i < 4:
                 m += heure[i]
             if 4 <= i < 6:
-                s += alarme[i]
+                s += heure[i]
         regler_heure(h,m,s)
 
     if choix == '3':
